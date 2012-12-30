@@ -71,9 +71,10 @@
     x = ((x >> 16) ^ x);
     return(x);"))
 
+;; TODO make this faster
 (define (hash x y)
-  (fxand #xFF (hash* (fx+ (hash* (fp->fx y))
-                     (fp->fx x)))))
+  (/ (fxand #xFF (hash* (fx+ (hash* (fp->fx y))
+                           (fp->fx x)))) 255))
 
 (define (hash-color x y)
   (rgb (hash* (fx+ #x77aabb22 (hash x y)))
@@ -196,11 +197,11 @@
 (define (monochrome proc threshold)
   (lambda (x y)
     (let ([res (proc x y)])
-      (if (<= res threshold) 255 0))))
+      (if (<= res threshold) 1 0))))
 
 (define (invert proc)
   (lambda (x y)
-    (c-2 255 (proc x y))))
+    (c-2 1 (proc x y))))
 
 ;; ** sample images
 
@@ -209,7 +210,7 @@
    (let ([rem-y (modulo (fp->fx y) 2)]
          [rem-x (modulo (fp->fx x) 2)])
      (if (or (= rem-x rem-y)
-             (= rem-x rem-y)) 0 255))))
+             (= rem-x rem-y)) 0 1))))
 
 (define (noise)
     (lambda (x y)

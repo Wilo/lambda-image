@@ -19,7 +19,7 @@
      (if (< radius²
             (+ (expt x 2)
                (expt y 2)))
-         0 255))))
+         0 1))))
 
 
 
@@ -31,17 +31,17 @@
 ;;     (expt (fxshr x3 16) x3)))
 
 
-;; return 255 or 0 randomly, which % percent chance of 255.
+;; return 1 or 0 randomly, which % percent chance of 1.
 (define (hashfield %)
   (let ([threshold (* #xFF (/ % 100))])
     (lambda (x y)
       ;; everybody loves lexical scoping
-      (if (>= threshold (hash x y)) 255 0))))
+      (if (>= threshold (hash x y)) 1 0))))
 
 ;; not quite working, need to mix 3 points
 
 
-;; (mask (lambda (x y) (* 255 (+ 0.5 (* 0.5 (sin (* (magnitude x y) 0.3))))))
+;; (mask (lambda (x y) (* 1 (+ 0.5 (* 0.5 (sin (* (magnitude x y) 0.3))))))
       ;;       (lambda (x y) (rgb (c+2 (c*2 (hash x y) 0.25) 50) 50 0))
       ;;       (lambda (x y) (rgb 0 (c+2 (c*2 (hash x y) 0.25) 20) 0)))
 
@@ -60,7 +60,7 @@
 
 (begin
   (define (lonely)
-    (lambda (x y) (if (and (= x 0) (= y 0)) 255 0)))
+    (lambda (x y) (if (and (= x 0) (= y 0)) 1 0)))
 
 
   (time
