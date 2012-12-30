@@ -1,3 +1,13 @@
+;;; Generate images with pure functions
+;;; Just for fun.
+;;; After I started this, I found this:
+;;; http://www.frank-buss.de/lisp/texture.html for Common Lisp
+;;; which works on the same principle.
+;;;
+;;; Everything is slow but that's ok because:
+;;; 1. This is just an experiment
+;;; 2. We can cache the result
+
 (use data-structures chicken-syntax
      mathh ;; for fpmod
      )
