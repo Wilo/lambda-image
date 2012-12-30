@@ -127,10 +127,10 @@
 
 ;; blend proc1 and proc2, with a mask (must be greyscale)
 (define (mask mask proc1 proc2)
-  (lambda (a b)
-    (let ([msk (c/2 (mask a b) #xFF)])
-      (c+2 (c*2 (proc1 a b) msk)
-           (c*2 (proc2 a b) (c-2 1 msk))))))
+  (lambda (x y)
+    (let ([msk (c/2 (mask x y) #xFF)])
+      (c+2 (c*2 (proc1 x y) msk)
+           (c*2 (proc2 x y) (c-2 1 msk))))))
 
 
 ;; multi-arg version of (cut blend <> <> cavg)
