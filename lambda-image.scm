@@ -217,3 +217,5 @@
       (hash x y)))
 
 (include "opencvt.scm")
+
+(repl)

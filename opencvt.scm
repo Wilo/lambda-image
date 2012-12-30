@@ -80,4 +80,3 @@ void Mat_set(Mat* mat, int x, int y, unsigned char channel, float value) {
     (set-c mat x y (integer->char 2) (vector-ref vec 0))))
 
 
-(repl)
