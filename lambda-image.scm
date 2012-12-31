@@ -225,6 +225,7 @@ return ((f * a) + ((1 - f) * b));"))
     (lambda (x y)
       (hash x y)))
 
+;; ** finally, image producer
 
 (define (gen-image proc set-pixel width height)
   (do ((y 0 (add1 y)))
