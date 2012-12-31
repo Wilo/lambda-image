@@ -94,11 +94,15 @@
 
 
 ;; cosine interpolation
-(define (cospol a b x)
+(define (cospol-scheme a b x)
   (let* ([xπ (* x π)]
          [f (* 0.5 (+ 1 (cos xπ)))])
     (+ (* f a) (* (- 1 f) b))))
 
+(define cospol (foreign-lambda* float ((float a) (float b) (float x))
+                           "
+float f = (cos(x * 3.1415927f) + 1) * 0.5f;
+return ((f * a) + ((1 - f) * b));"))
 
 ;;; *** misc
 
