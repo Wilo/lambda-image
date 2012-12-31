@@ -223,6 +223,14 @@ return ((f * a) + ((1 - f) * b));"))
     (lambda (x y)
       (hash x y)))
 
+
+(define (gen-image proc set-pixel width height)
+  (do ((y 0 (add1 y)))
+      ((>= y height))
+    (do ((x 0 (add1 x)))
+        ((>= x width))
+      (set-pixel x y (proc x y)))))
+
 (include "opencvt.scm")
 
 (repl)

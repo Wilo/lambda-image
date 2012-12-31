@@ -5,12 +5,7 @@
 
   (define M (Mat height width)))
 
-(define (mat-for-each proc)
-  (do ((y 0 (add1 y)))
-      ((>= y height))
-    (do ((x 0 (add1 x)))
-        ((>= x width))
-      (set M x y (proc x y)))))
+
 
 
 (define (circle radius)
