@@ -41,3 +41,6 @@
        (blend cavg
              (i* (circles) (rgb 0 0 1))
              (scale (noise) 20))))
+
+;; save an image section to file
+(save (antialias (circles)) "/tmp/circles.png" 100 100)
