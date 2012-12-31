@@ -42,18 +42,6 @@
 
 
 (begin
-  (define (aproject x y X Y)
-    (let ([alpha 
-           (/ (+ (* x X)
-                 (* y Y))
-              (+ (expt X 2)
-                 (expt Y 2)))])
-      (magnitude (- x (* alpha X))
-                 (- y (* alpha Y))))))
-
-
-
-(begin
   (define (lonely)
     (lambda (x y) (if (and (= x 0) (= y 0)) 1 0)))
 
