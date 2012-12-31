@@ -8,7 +8,9 @@
 ;;; 1. This is just an experiment
 ;;; 2. We can cache the result
 
-(use data-structures chicken-syntax
+(use data-structures
+     chicken-syntax
+     srfi-4
      mathh ;; for fpmod
      )
 
