@@ -1,4 +1,4 @@
-(use bb lolevel)
+(use bb lolevel clojurian-syntax)
 
 (bb:init)
 
@@ -40,13 +40,23 @@
 (begin
 
   (define (image)
-    (blend
-     c-2
-     (i* (repeat (translate (circle 70) -70 -70) 140) (rgb 1 0 1))
-     (i* (scale-aa (repeat (translate (circle 7)
-                                      -7 -7)
-                           14)
-                   10) (rgb 0 1 0))))
+    (let* ([spacing 2]
+           [radius 7]
+           [S 5]
+           [pic (lambda ()
+                  (-> (circle radius)
+                      (translate (- radius))
+                      (repeat (+ spacing (* 2 radius)))))])
+      (mask
+       (lambda (x y)
+         (-> x
+             (/ π)
+             (/ radius)
+             (sin)
+             (c+2 1)
+             (c*2 0.5)))
+       (-> (pic) (scale S)    (i* (rgb 1 0 0)) (antialias))
+       (-> (pic) (scale-aa S) (i* (rgb 0 0 1))))))
 
 
   (begin
