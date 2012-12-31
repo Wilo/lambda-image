@@ -138,7 +138,7 @@ return ((f * a) + ((1 - f) * b));"))
 ;; blend proc1 and proc2, with a mask (must be greyscale)
 (define (mask mask proc1 proc2)
   (lambda (x y)
-    (let ([msk (c/2 (mask x y) #xFF)])
+    (let ([msk (mask x y)])
       (c+2 (c*2 (proc1 x y) msk)
            (c*2 (proc2 x y) (c-2 1 msk))))))
 
