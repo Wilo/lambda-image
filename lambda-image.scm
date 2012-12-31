@@ -8,6 +8,10 @@
 ;;; 1. This is just an experiment
 ;;; 2. We can cache the result
 
+
+;;; I'm compiling this with some optimization:
+;;; csc lambda-image.scm -c++ -local -inline -inline-global -optimize-leaf-routines -u
+
 (use data-structures
      chicken-syntax
      srfi-4
