@@ -106,4 +106,5 @@ $ csc lambda-image.scm -c++
 $ # you can optimize with this if you want: -local -inline -inline-global -optimize-leaf-routines -u
 $ ./lambda-image
 #;> (draw (noise))
+#;> (draw (noise)) ;; need to run it twice (bug, sorry!)
 ```
