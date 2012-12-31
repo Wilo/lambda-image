@@ -95,3 +95,13 @@ These functions are boundless and are easy to combine to make patterns and simpl
 ;; save an image section to file
 (save (antialias (circles)) "/tmp/circles.png" 100 100)
 ```
+
+## Installing
+
+```shell
+$ git clone https://github.com/kristianlm/lambda-image.git
+$ cd lambda-image
+# with [Chicken scheme](http://call-cc.org) installed, run
+$ csc lambda-image.scm -c++
+$ # you can optimize with this if you want: -local -inline -inline-global -optimize-leaf-routines -u
+```
