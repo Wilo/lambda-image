@@ -236,13 +236,13 @@ return ((f * a) + ((1 - f) * b));"))
 
 ;; ** finally, image producer
 
-(define (gen-image proc set-pixel width height)
+(define (render proc set-pixel width height)
   (do ((y 0 (add1 y)))
       ((>= y height))
     (do ((x 0 (add1 x)))
         ((>= x width))
       (set-pixel x y (proc x y)))))
 
-(include "opencvt.scm")
+(include "lambda-image-imlib2.scm")
 
 (repl)
