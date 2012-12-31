@@ -117,9 +117,12 @@
   (lambda (x y)
     (c*2 (proc x y) operand)))
   
-(define (i+ proc operand)
+(define (i+ . procs)
   (lambda (x y)
-    (c+2 (proc x y) operand)))
+    (apply c+ (map (lambda (proc) (if (procedure? proc)
+                                 (proc x y)
+                                 proc))
+                   procs))))
 
 ;; e.g. (blend (noise) (scale (checkers) 10) cavg)
 (define (blend blend-proc . procs)
