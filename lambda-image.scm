@@ -185,7 +185,7 @@ return ((f * a) + ((1 - f) * b));"))
             (ƒ 0.25 -0.25)
             (ƒ 0.25 0.25)))))
 
-(define (translate proc X Y)
+(define (translate proc X #!optional (Y X))
   (lambda (x y)
     (proc (+ X x) (+ Y y))))
 
