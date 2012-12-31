@@ -225,6 +225,15 @@ return ((f * a) + ((1 - f) * b));"))
     (lambda (x y)
       (hash x y)))
 
+(define (circle radius)
+  (let ([radius² (* radius radius)])
+   (lambda (x y)
+     (if (< radius²
+            (+ (expt x 2)
+               (expt y 2)))
+         0 1))))
+
+
 ;; ** finally, image producer
 
 (define (gen-image proc set-pixel width height)

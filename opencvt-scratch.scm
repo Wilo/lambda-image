@@ -8,13 +8,7 @@
 
 
 
-(define (circle radius)
-  (let ([radius² (* radius radius)])
-   (lambda (x y)
-     (if (< radius²
-            (+ (expt x 2)
-               (expt y 2)))
-         0 1))))
+
 
 
 
