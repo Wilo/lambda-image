@@ -244,5 +244,6 @@ return ((f * a) + ((1 - f) * b));"))
       (set-pixel x y (proc x y)))))
 
 (include "lambda-image-imlib2.scm")
+(include "lambda-image-bb.scm")
 
 (repl)

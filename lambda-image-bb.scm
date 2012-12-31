@@ -1,4 +1,4 @@
-(use bb lolevel clojurian-syntax)
+(use bb lolevel)
 
 (bb:init)
 
@@ -6,20 +6,26 @@
   (define width 512)
   (define height 256))
 
-(define w (bb:make-widget 'window 512 256))
-(define i (bb:make-widget 'label width height))
-(bb:show w)
+(define *bb-w* (bb:make-widget 'window 512 256))
+(define *bb-img* (bb:make-widget 'label width height))
+(bb:show *bb-w*)
 
-(set! (bb:property i 'width) width)
-(set! (bb:property i 'height) height)
+(define (bb-resize w h)
+  (set! width w)
+  (set! height h)
+  
+  (set! (bb:property *bb-img* 'width) width)
+  (set! (bb:property *bb-img* 'height) height)
 
-(begin
-  ;; (u32vector-length ibuffer)
-  (define ibuffer (make-u32vector (* width height) 0 #t #t)))
+  (set! (bb:property *bb-w* 'width) width)
+  (set! (bb:property *bb-w* 'height) height)
 
-(begin
-  (set! (bb:property i 'image)
-        (bb:image (make-locative  ibuffer) width height 4)))
+  (set! ibuffer (make-u32vector (* width height) 0 #t #t))
+
+  (set! (bb:property *bb-img* 'image)
+        (bb:image (make-locative ibuffer) width height 4)))
+
+(bb-resize 100 100)
 
 
 (define (colvec->int v)
@@ -33,33 +39,18 @@
        (fxshl (p B) 16)
        #xFF000000)))
 
-
-(define (my-setter x y colvector)
+(define (bb-setter x y colvector)
   (u32vector-set! ibuffer (+ x (* y width)) (colvec->int colvector)))
 
-(begin
+(define (bb-render img-proc)
+  (render img-proc bb-setter width height)
+  (bb:redraw *bb-img*)
+  (let loop ()
+    (if (= (bb:run 0))
+        (void)
+        (loop))))
 
-  (define (image)
-    (let* ([spacing 2]
-           [radius 7]
-           [S 5]
-           [pic (lambda ()
-                  (-> (circle radius)
-                      (translate (- radius))
-                      (repeat (+ spacing (* 2 radius)))))])
-      (mask
-       (lambda (x y)
-         (-> x
-             (/ π)
-             (/ radius)
-             (sin)
-             (c+2 1)
-             (c*2 0.5)))
-       (-> (pic) (scale S)    (i* (rgb 1 0 0)) (antialias))
-       (-> (pic) (scale-aa S) (i* (rgb 0 0 1))))))
+(define draw bb-render)
+(define resize bb-resize)
 
 
-  (begin
-    (gen-image (image) my-setter width height)
-    (bb:redraw i)
-    (bb:run 0)))
