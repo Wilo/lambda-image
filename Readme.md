@@ -1,7 +1,8 @@
-
 # Lambda Image
 
 Texture generation with a functional perspective. 
+This experimental piece of software represents images by functions instead.
+For a more complete library with a similar approach, check out [Clisk](https://github.com/mikera/clisk/) for Clojure.
 
 Usually, a bitmap image is defined by a finite set of pixels and their colors. These are stored:
 
@@ -13,7 +14,7 @@ float [2][2][4] image =
    0,1,0,0.5, 0,1,0,0.5, }
 ```
 
-This experimental piece of software represents images by functions instead. Instead of a stored set of pixels, an image is a function which can calculate the color of the pixels:
+Instead of a stored set of pixels, an image is a function which can calculate the color of the pixels:
 
 ```scheme
 ;; semi-transparent red
